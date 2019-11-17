@@ -4,11 +4,15 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TheNavbarComponent } from './shared/the-navbar/the-navbar.component';
+import { TheFooterComponent } from './shared/the-footer/the-footer.component';
+import { PlatosComponent } from './components/platos/platos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TheNavbarComponent
+    TheNavbarComponent,
+    TheFooterComponent,
+    PlatosComponent,
   ],
   imports: [
     BrowserModule,

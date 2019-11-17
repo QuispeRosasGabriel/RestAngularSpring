@@ -1,0 +1,22 @@
+<div class="card text-primary bg-transparent mb-3">
+  <div class="card-header">Platos</div>
+  <div class="card-body">
+    <h5 class="card-title">Lista de Platos</h5>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Nombre</th>
+          <th>Cantidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plato of platos">
+          <td>{{ plato.id }}</td>
+          <td>{{ plato.nombre }}</td>
+          <td>{{ plato.cantidad }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
