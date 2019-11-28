@@ -1,7 +1,7 @@
 <div class="card bg-dark text-white">
   <div class="card-header">{{ titulo }}</div>
   <div class="card-body">
-    <form>
+    <form (ngSubmit)="create()">
       <div class="form-group row">
         <label for="nombre" class="col-form-label col-md-2">Nombre</label>
         <div class="col-md-6">
@@ -35,6 +35,12 @@
             [(ngModel)]="plato.precio"
             name="precio"
           />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="" class="col-form-label col-md-2">Precio</label>
+        <div class="col-md-6">
+          <button class="btn btn-primary" role="button">Crear</button>
         </div>
       </div>
     </form>

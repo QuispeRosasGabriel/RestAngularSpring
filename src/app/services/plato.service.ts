@@ -3,7 +3,7 @@ import { PLATOS } from '../components/platos/platos.json';
 import { Plato } from '../models/plato.js';
 //RxJs
 import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from "rxjs/operators";
 
 @Injectable({
@@ -11,6 +11,9 @@ import { map } from "rxjs/operators";
 })
 export class PlatoService {
   private urlEndPoint: string = 'http://localhost:8080/api/platos'
+
+  private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' })
+
   constructor(private http: HttpClient) { }
 
   getPlatos(): Observable<Plato[]> {
@@ -18,6 +21,10 @@ export class PlatoService {
     return this.http.get(this.urlEndPoint).pipe(
       map((response) => response as Plato[])
     );
+  }
+
+  create(plato: Plato): Observable<Plato> {
+    return this.http.post<Plato>(this.urlEndPoint, plato, { headers: this.httpHeaders })
   }
 
 }
