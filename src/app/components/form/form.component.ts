@@ -19,7 +19,7 @@ export class FormComponent implements OnInit {
 
   create(): void {
     this.platoService.create(this.plato).subscribe(
-      response => this.router.navigate(['platos'])
+      response => this.router.navigate(['/platos'])
     )
   }
 
