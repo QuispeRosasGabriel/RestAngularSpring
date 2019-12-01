@@ -7,7 +7,8 @@ import { FormComponent } from './components/form/form.component';
 const routes: Routes = [
   { path: '', redirectTo: '/platos', pathMatch: 'full' },
   { path: 'platos', component: PlatosComponent },
-  { path: 'formulario', component: FormComponent }
+  { path: 'formulario', component: FormComponent },
+  { path: 'formulario/:id', component: FormComponent }
 ];
 
 @NgModule({

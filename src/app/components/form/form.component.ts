@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Plato } from 'src/app/models/plato';
 import { PlatoService } from 'src/app/services/plato.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
+//libreria de alertas
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-form',
@@ -12,14 +16,28 @@ export class FormComponent implements OnInit {
 
   private plato: Plato = new Plato();
 
-  constructor(private platoService: PlatoService, private router: Router) { }
+  constructor(private platoService: PlatoService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
   }
 
+  cargarPlato(): void {
+    this.activatedRoute.params.subscribe(params => {
+      let id = params['id']
+      if (id) {
+        this.platoService.obtenerPlato(id).subscribe(
+          (plato) => this.plato = plato
+        )
+      }
+    })
+  }
+
   create(): void {
     this.platoService.create(this.plato).subscribe(
-      response => this.router.navigate(['/platos'])
+      plato => {
+        this.router.navigate(['/platos'])
+        swal.fire('Nuevo Plato', `Plato ${plato.nombre} creado con éxito`, 'success')
+      }
     )
   }
 

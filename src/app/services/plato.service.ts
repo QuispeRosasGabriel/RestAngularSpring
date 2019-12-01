@@ -27,4 +27,9 @@ export class PlatoService {
     return this.http.post<Plato>(this.urlEndPoint, plato, { headers: this.httpHeaders })
   }
 
+  obtenerPlato(id): Observable<Plato> {
+    return this.http.get<Plato>(`${this.urlEndPoint}/${id}`)
+  }
+
+
 }

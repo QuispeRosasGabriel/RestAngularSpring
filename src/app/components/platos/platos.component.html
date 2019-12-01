@@ -26,6 +26,14 @@
           <td>{{ plato.nombre }}</td>
           <td>{{ plato.cantidad }}</td>
           <td>{{ plato.precio }}</td>
+          <td>
+            <button
+              class="btn btn-primary"
+              [routerLink]="['/formulario, plato.id']"
+            >
+              Editar
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
