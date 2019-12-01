@@ -19,6 +19,7 @@ export class FormComponent implements OnInit {
   constructor(private platoService: PlatoService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.cargarPlato()
   }
 
   cargarPlato(): void {
