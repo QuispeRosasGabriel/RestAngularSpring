@@ -11,7 +11,13 @@
         Añadir Plato
       </button>
     </div>
-    <table class="table table-bordered table-striped">
+    <div *ngIf="platos?.length == 0" class="alert alert-danger">
+      No hay registro en la base de datos!
+    </div>
+    <table
+      class="table table-bordered table-striped"
+      *ngIf="platos?.length > 0"
+    >
       <thead>
         <tr>
           <th>id</th>
@@ -27,12 +33,20 @@
           <td>{{ plato.nombre }}</td>
           <td>{{ plato.cantidad }}</td>
           <td>{{ plato.precio }}</td>
-          <td>
+          <td class="d-flex justify-content-around">
             <button
               class="btn btn-primary"
               [routerLink]="['/formulario', plato.id]"
+              name="editar"
             >
               Editar
+            </button>
+            <button
+              class="btn btn-danger"
+              name="eliminar"
+              (click)="delete(plato)"
+            >
+              Eliminar
             </button>
           </td>
         </tr>

@@ -36,10 +36,19 @@ export class FormComponent implements OnInit {
   create(): void {
     this.platoService.create(this.plato).subscribe(
       plato => {
-        this.router.navigate(['/platos'])
-        swal.fire('Nuevo Plato', `Plato ${plato.nombre} creado con éxito`, 'success')
+        if (confirm("Desea guardar los cambios?")) {
+          this.router.navigate(['/platos'])
+          swal.fire('Nuevo Plato', `Plato ${plato.nombre} creado con éxito`, 'success')
+        }
       }
     )
   }
-
+  update(): void {
+    this.platoService.update(this.plato).subscribe(
+      plato => {
+        this.router.navigate(['/platos'])
+        swal.fire('Plato Actualizado', `El plato ${plato.nombre} fue actualizado con éxito`, 'success')
+      }
+    )
+  }
 }

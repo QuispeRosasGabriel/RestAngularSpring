@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { PLATOS } from '../components/platos/platos.json';
 import { Plato } from '../models/plato.js';
 //RxJs
 import { Observable, of } from 'rxjs';
@@ -31,5 +30,12 @@ export class PlatoService {
     return this.http.get<Plato>(`${this.urlEndPoint}/${id}`)
   }
 
+  update(plato: Plato): Observable<Plato> {
+    return this.http.put<Plato>(`${this.urlEndPoint}/${plato.id}`, plato, { headers: this.httpHeaders })
+  }
+
+  delete(id: number): Observable<Plato> {
+    return this.http.delete<Plato>(`${this.urlEndPoint}/${id}`, { headers: this.httpHeaders })
+  }
 
 }
