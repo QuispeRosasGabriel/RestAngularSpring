@@ -35,10 +35,10 @@ export class FormComponent implements OnInit {
 
   create(): void {
     this.platoService.create(this.plato).subscribe(
-      plato => {
+      response => {
         if (confirm("Desea guardar los cambios?")) {
           this.router.navigate(['/platos'])
-          swal.fire('Nuevo Plato', `Plato ${plato.nombre} creado con éxito`, 'success')
+          swal.fire('Nuevo Plato', `Plato ${response.plato.nombre} creado con éxito`, 'success')
         }
       }
     )
