@@ -1,7 +1,7 @@
 <div class="card bg-dark text-white">
   <div class="card-header">{{ titulo }}</div>
   <div class="card-body">
-    <form>
+    <form #platoForm="ngForm">
       <div class="form-group row">
         <label for="nombre" class="col-form-label col-md-2">Nombre</label>
         <div class="col-md-6">
@@ -10,7 +10,19 @@
             class="form-control"
             [(ngModel)]="plato.nombre"
             name="nombre"
+            required
+            minlength="4"
+            #nombre="ngModel"
           />
+          <div
+            class="alert alert-danger"
+            *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+          >
+            <div *ngIf="nombre.errors.required">Complete este campo</div>
+            <div *ngIf="nombre.errors.minlength">
+              Debe tener 4 letras como mínimo
+            </div>
+          </div>
         </div>
       </div>
 
@@ -22,7 +34,15 @@
             class="form-control"
             [(ngModel)]="plato.cantidad"
             name="cantidad"
+            required
+            #cantidad="ngModel"
           />
+          <div
+            class="alert alert-danger"
+            *ngIf="cantidad.invalid && (cantidad.dirty || cantidad.touched)"
+          >
+            <div *ngIf="cantidad.errors.required">Complete este campo</div>
+          </div>
         </div>
       </div>
 
@@ -34,6 +54,7 @@
             class="form-control"
             [(ngModel)]="plato.precio"
             name="precio"
+            required
           />
         </div>
       </div>
@@ -45,11 +66,17 @@
             role="button"
             (click)="create()"
             *ngIf="!plato.id; else elseBlock"
+            [disabled]="!platoForm.form.valid"
           >
             Crear
           </button>
           <ng-template #elseBlock>
-            <button class="btn btn-primary" role="button" (click)="update()">
+            <button
+              class="btn btn-primary"
+              role="button"
+              (click)="update()"
+              [disabled]="!platoForm.form.valid"
+            >
               Editar
             </button>
           </ng-template>
