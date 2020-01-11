@@ -39,6 +39,7 @@ export class PlatoService {
 
   obtenerPlato(id): Observable<Plato> {
     return this.http.get<Plato>(`${this.urlEndPoint}/${id}`).pipe(
+      //Capturando error en el servicio
       catchError(e => {
         this.router.navigate(['/platos']);
         console.error(e.error.mensaje);
@@ -51,6 +52,7 @@ export class PlatoService {
   update(plato: Plato): Observable<Plato> {
     return this.http.put<Plato>(`${this.urlEndPoint}/${plato.id}`,
       plato, { headers: this.httpHeaders })
+      //Capturando error en el servicio
       .pipe(
         catchError(e => {
           console.error(e.error.mensaje)
@@ -62,6 +64,7 @@ export class PlatoService {
 
   delete(id: number): Observable<Plato> {
     return this.http.delete<Plato>(`${this.urlEndPoint}/${id}`, { headers: this.httpHeaders })
+      //Capturando error en el servicio
       .pipe(
         catchError(e => {
           console.error(e.error.mensaje)
