@@ -15,6 +15,7 @@ import swal from 'sweetalert2';
 export class FormComponent implements OnInit {
 
   private plato: Plato = new Plato();
+  private errores: String[];
 
   constructor(private platoService: PlatoService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -40,6 +41,12 @@ export class FormComponent implements OnInit {
           this.router.navigate(['/platos'])
           swal.fire('Nuevo Plato', `Plato ${response.plato.nombre} creado con éxito`, 'success')
         }
+      },
+      //controlando error del backend
+      err => {
+        this.errores = err.error.errors as String[];
+        console.error("codigo del error: " + err.status);
+        console.error(err.error.errors);
       }
     )
   }
